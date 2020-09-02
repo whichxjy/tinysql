@@ -71,7 +71,22 @@ func EncodeRowKeyWithHandle(tableID int64, handle int64) kv.Key {
 
 // DecodeRecordKey decodes the key and gets the tableID, handle.
 func DecodeRecordKey(key kv.Key) (tableID int64, handle int64, err error) {
-	/* Your code here */
+	if len(key) != RecordRowKeyLen || !hasTablePrefix(key) || !hasRecordPrefixSep(key[prefixLen-recordPrefixSepLength:]) {
+		return 0, 0, errInvalidKey.GenWithStack("invalid key - %q", key)
+	}
+
+	prefix := key[:prefixLen]
+	_, tableID, err = codec.DecodeInt(prefix[tablePrefixLength : prefixLen-recordPrefixSepLength])
+	if err != nil {
+		return 0, 0, errors.Trace(err)
+	}
+
+	encodedHandle := key[prefixLen:]
+	_, handle, err = codec.DecodeInt(encodedHandle)
+	if err != nil {
+		return 0, 0, errors.Trace(err)
+	}
+
 	return
 }
 
@@ -119,6 +134,7 @@ func DecodeIndexKey(key kv.Key) (tableID int64, indexID int64, indexValues []str
 		indexValues = append(indexValues, str)
 		key = remain
 	}
+
 	return
 }
 
