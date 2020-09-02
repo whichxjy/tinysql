@@ -16,6 +16,7 @@
 #### Table Codec
 
 ##### 课程资料
+
 - KV mapping: [关系模型到 Key-Value 模型的映射](https://pingcap.com/blog-cn/tidb-internal-2/#%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B%E5%88%B0-key-value-%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%98%A0%E5%B0%84)
 
 ## Parser
@@ -118,4 +119,3 @@
 
 - [TiDB 源码阅读系列文章（十七）DDL 源码解析](https://pingcap.com/blog-cn/tidb-source-code-reading-17/)
 - https://static.googleusercontent.com/media/research.google.com/zh-CN//pubs/archive/41376.pdf
-
