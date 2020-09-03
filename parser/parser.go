@@ -27,9 +27,8 @@
 
 package parser
 
-import __yyfmt__ "fmt"
-
 import (
+	__yyfmt__ "fmt"
 	"strings"
 
 	"github.com/pingcap/tidb/parser/ast"

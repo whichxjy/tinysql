@@ -433,7 +433,6 @@ func (s *testParserSuite) TestSetVariable(c *C) {
 		IsGlobal bool
 		IsSystem bool
 	}{
-
 		// Set system variable xx.xx, although xx.xx isn't a system variable, the parser should accept it.
 		{"set xx.xx = 666", "xx.xx", false, true},
 		// Set session system variable xx.xx
