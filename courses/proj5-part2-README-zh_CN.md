@@ -1,5 +1,5 @@
 # Hash Join
--
+
 ## 概览
 
 在这一小节我们将学习 Hash Join 及其实现，并且从这一小节开始我们将接触并发计算
@@ -76,7 +76,7 @@ Outer Fetcher 是一个后台 goroutine，他的主要计算逻辑在 fetchOuter
 
 主线程的计算逻辑由 NextChunk 这个函数完成。主线程的计算逻辑非常简单：
 
-1. 从 joinResultCh 中获取一个 Join Chunk 
+1. 从 joinResultCh 中获取一个 Join Chunk
 2. 将调用方传下来的 chk 和 Join Chunk 中的数据交换
 3. 把 Join Chunk 还给对应的 Join Worker
 

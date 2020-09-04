@@ -14,7 +14,6 @@ System R 两阶段模型可以说是现代数据库基于代价优化（Cost bas
 
 [logicalOpimize](https://github.com/pingcap-incubator/tinysql/blob/master/planner/core/optimizer.go#L95) 是逻辑优化的入口。我们会顺序遍历所有的优化规则，每个优化规则会遍历整个 plan tree，同时对 plan tree 做一些修改，最后返回修改过的 plan tree。
 
-
 ### 物理优化
 
 [physicalOptimize](https://github.com/pingcap-incubator/tinysql/blob/master/planner/core/optimizer.go#L112) 是物理优化的入口。这个过程实际上是一个记忆化搜索的过程。
@@ -28,20 +27,20 @@ func findBestTask(p LogicalPlan, prop OrderProp) PhysicalPlan {
 	if retP, ok := dpTable.Find(p, prop); ok {
 		return retP
 	}
-	
+
 	selfPhysicalPlans := p.getPhysicalPlans()
-	
+
 	bestPlanTree := a plan with maximum cost
-	
+
 	for _, pp := range selfPhysicalPlans {
-	
+
 		childProps := pp.GetChildProps(prop)
 		childPlans := make([]PhysicalPlan, 0, len(p.children))
 		for i, cp := range p.children {
 			childPlans = append(childPlans, findBestTask(cp, childProps[i])
 		}
 		physicalPlanTree, cost := connect(pp, childPlans)
-		
+
 		if physicalPlanTree.cost < bestPlanTree.cost {
 			bestPlanTree = physicalPlanTree
 		}
